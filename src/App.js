@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from './components/button.jsx'
 
 function App() {
   return (
@@ -18,6 +19,12 @@ function App() {
         >
           Learn React
         </a>
+        <br/>
+        <Button>Button</Button>
+        <br/>
+        <Button isSecondary>Secondary</Button>
+        <br/>
+        <input/>
       </header>
     </div>
   );
