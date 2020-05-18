@@ -1,6 +1,9 @@
 const sass = require("sass");
+
 const interpolateHtml = require("craco-interpolate-html-plugin");
-const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+
 const env = require("./config/env");
 const { template } = require("./config/utils");
 const packageJson = require('./package.json');
@@ -8,18 +11,32 @@ const packageJson = require('./package.json');
 env(".env.local", ".env");
 const isProduction = process.env.NODE_ENV === "production";
 
+const commonBabelPlugins = [];
+
+const commonWebpackPlugins = [];
+
 module.exports = {
   babel: {
-    plugins: isProduction ? [] : ["react-refresh/babel"],
+    plugins: isProduction ? [
+      ...commonBabelPlugins,
+    ] : [
+      ...commonBabelPlugins,
+    ],
   },
   webpack: {
-    plugins: isProduction
-        ? []
-        : [
-          new ReactRefreshPlugin({
-            disableRefreshCheck: true,
-          }),
-        ],
+    plugins: isProduction ? [
+      ...commonWebpackPlugins,
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+        analyzerMode: "static",
+      }),
+    ] : [
+      ...commonWebpackPlugins,
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+        analyzerPort: process.env.ANALYZER_PORT,
+      }),
+    ],
   },
   plugins: [
     {

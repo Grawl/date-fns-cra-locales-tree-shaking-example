@@ -1,7 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Button from './components/button.jsx'
+
+import { format } from 'date-fns'
+// import format from 'date-fns/format'
+import { ru } from 'date-fns/locale'
+// import ru from 'date-fns/locale/ru'
 
 function App() {
   return (
@@ -19,12 +23,9 @@ function App() {
         >
           Learn React
         </a>
-        <br/>
-        <Button>Button</Button>
-        <br/>
-        <Button isSecondary>Secondary</Button>
-        <br/>
-        <input/>
+        <p>
+          {format(new Date(2014, 1, 11), 'd MMMM yyyy', { locale: ru })}
+        </p>
       </header>
     </div>
   );

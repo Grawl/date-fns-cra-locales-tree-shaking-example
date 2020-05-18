@@ -1,3 +1,11 @@
+# [`date-fns`](https://date-fns.org) + [CRA](https://create-react-app.dev) locales Tree Shaking example
+
+On `start`, you can see locales is working and Tree Shaking is not: all `date-fns` locales and all functions imported. Open `webpack-bundle-analyzer` on `8888` port (or change it in `.env.local`) to see report.
+
+On `build`, you can see Tree Shaking is working: only imported `date-fns` locales and functions imported into bundle. Open `build/report.html` to see report.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
